@@ -84,6 +84,8 @@ int main()
   const float worldSize = 32.0f;
   World world(worldSize);
 
+  std::cout << "Hello world\n";
+
   // now we create an instance of our ngl class, this will init NGL and setup basic
   // opengl stuff ext. When this falls out of scope the dtor will be called and cleanup
   // our gl stuff
