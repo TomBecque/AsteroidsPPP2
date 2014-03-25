@@ -1,4 +1,4 @@
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #ifdef LINUX
 	#include <GL/gl.h>
 #endif
@@ -11,6 +11,7 @@
 #include "World.h"
 #include "rigidbodies.h"
 #include "rocket.h"
+#include "SDL2/SDL_main.h"
 
 /// @brief function to quit SDL with error message
 /// @param[in] _msg the error message to send
@@ -19,9 +20,11 @@ void SDLErrorExit(const std::string &_msg);
 /// @brief initialize SDL OpenGL context
 SDL_GLContext createOpenGLContext( SDL_Window *window);
 
-
-
+#ifdef WIN32
+int SDL_main(int argc, char *argv[])
+#else
 int main()
+#endif
 {
 
     // Initialize SDL's Video subsystem
@@ -67,7 +70,7 @@ int main()
   std::cout<<yellow;
   glClear(GL_COLOR_BUFFER_BIT);
   GLFunctions::perspective(45,float(1024/720),0.01,500);
-  GLFunctions::lookAt(Vec4(4,4,4),Vec4(0,0,0),Vec4(0,1,0));
+  GLFunctions::lookAt(Vec4(0,2,4),Vec4(0,0,0),Vec4(0,1,0));
 
   SDL_GL_SwapWindow(window);
   glEnable(GL_LIGHTING);
@@ -84,7 +87,7 @@ int main()
   const float worldSize = 32.0f;
   World world(worldSize);
 
-  std::cout << "Hello world\n";
+  world.initAsteroid();
 
   // now we create an instance of our ngl class, this will init NGL and setup basic
   // opengl stuff ext. When this falls out of scope the dtor will be called and cleanup
@@ -110,8 +113,10 @@ int main()
             case SDLK_ESCAPE :  quit = true; break;
             case SDLK_w : glPolygonMode(GL_FRONT_AND_BACK,GL_LINE); break;
             case SDLK_s : glPolygonMode(GL_FRONT_AND_BACK,GL_FILL); break;
-            case SDLK_a : world.movePlayer(Rocket::LEFT);
-            case SDLK_d : world.movePlayer(Rocket::RIGHT);
+            case SDLK_LEFT :  world.movePlayer(Rocket::LEFT); break;
+            case SDLK_RIGHT : world.movePlayer(Rocket::RIGHT); break;
+            case SDLK_UP : world.movePlayer(Rocket::THRUST);break;
+            //case SDLK_SPACE : world.player.fire();break;
 
             default : break;
           } // end of key process

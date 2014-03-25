@@ -5,6 +5,7 @@
 #include <cmath>
 #include <cstdlib>
 
+
 void GLFunctions::cube(GLfloat _w, GLfloat _h, GLfloat _d)
 {
   // assume the  cube centered at the origin

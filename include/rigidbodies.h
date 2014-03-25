@@ -13,9 +13,8 @@ public:
       m_direction(Vec4(0,0,0)), m_speed(0.0f)
   {;}
 
-  void drawCube();
   void drawSphere();
-  void checkCollision();
+
 
 protected:
   Vec4 m_vertArray;

@@ -1,0 +1,15 @@
+INPUT(
+./obj\main.o
+./obj\GLFunctions.o
+./obj\Vec4.o
+./obj\Mat4.o
+./obj\rigidbodies.o
+./obj\rocket.o
+./obj\asteroid.o
+./obj\hud.o
+./obj\world.o
+./obj\camera.o
+./obj\bullet.o
+./obj\map.o
+./obj\util.o
+);

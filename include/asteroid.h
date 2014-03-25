@@ -5,7 +5,6 @@
 class Asteroid : public RigidBodies
 {
 public:
-
   Asteroid(const Vec4& _pos,
            const Vec4& _colour,
            const Vec4& _size,
@@ -13,12 +12,13 @@ public:
     : RigidBodies(_pos, _colour, _size), m_radius(_radius)
   {;}
 
-  void destroyAsteroid();
-
-  void splitAsteroid();
+  void destroy();
+  void split();
+  void draw() const;
 
 private:
   float m_radius;
+
 };
 
 #endif // ASTEROID_H

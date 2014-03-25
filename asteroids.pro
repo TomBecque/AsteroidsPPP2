@@ -17,7 +17,8 @@ SOURCES=src/main.cpp \
     src/world.cpp \
     src/camera.cpp \
     src/bullet.cpp \
-    src/map.cpp
+    src/map.cpp \
+    src/util.cpp
 
 
 HEADERS+=include/GLFunctions.h \
@@ -31,7 +32,8 @@ HEADERS+=include/GLFunctions.h \
     include/camera.h \
     include/bullet.h \
     include/map.h \
-    include/World.h
+    include/World.h \
+    include/util.h
 
 # add the ngl lib
 # this is where to look for includes
@@ -48,10 +50,9 @@ message(output from sdl2-config --cflags added to CXXFLAGS= $$QMAKE_CXXFLAGS)
 LIBS+=$$system(sdl2-config  --libs)
 message(output from sdl2-config --libs added to LIB=$$LIBS)
 
-LIBS += -lGL -lGLU
+LIBS += -L -lgl32 -lopengl32
 
-
-#LIBS += -L/usr/local/lib "C:\Program Files\Common Files\SDL2\lib" -lSDL2 -lSDL2_image
+LIBS += -L/usr/local/lib
 
 
 macx:LIBS+= -framework OpenGL
@@ -66,3 +67,7 @@ linux-clang {
     DEFINES += LINUX
     LIBS+= -lGLEW
 }
+
+INCLUDEPATH += "C:\Program Files (x86)\Common Files\SDL2\include"
+LIBS += -L"C:\Program Files (x86)\Common Files\SDL2\lib" -lSDL2 -lSDL2_image
+LIBS +=  -lmingw32 -lSDLmain -lSDL

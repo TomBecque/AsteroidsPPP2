@@ -10,6 +10,7 @@
 #ifdef DARWIN
 	#include <OpenGL/gl.h>
 #endif
+#include <GL/gl.h>
 
 Mat4::Mat4(float _s)
 {

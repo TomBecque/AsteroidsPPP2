@@ -6,6 +6,7 @@
 #ifdef DARWIN
 	#include <OpenGL/gl.h>
 #endif
+#include <GL/gl.h>
 
 #include "Vec4.h"
 #include <cmath>

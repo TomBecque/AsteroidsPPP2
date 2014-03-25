@@ -6,8 +6,8 @@ class Bullet
 {
 public:
   Bullet();
-  void spawnBullet();
-  void deleteBullet();
+//  void spawn();
+  void destroy();
 
 };
 
