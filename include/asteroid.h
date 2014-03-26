@@ -14,7 +14,7 @@ public:
 
   void destroy();
   void split();
-  void draw() const;
+  void draw();
 
 private:
   float m_radius;

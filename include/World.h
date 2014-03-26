@@ -15,12 +15,12 @@ public:
                                        )
   {;}
 
-  void draw() const;
+  void draw();
   void spawnAsteroid();
   void initAsteroid();
-  void initRocket();
+  void fireBullet();
 
-  void movePlayer(Rocket::direction _move);
+  void movePlayer(Rocket::direction _move, float _rotation);
 
 private:
   float m_worldSize;

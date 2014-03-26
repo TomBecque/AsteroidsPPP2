@@ -50,7 +50,7 @@ message(output from sdl2-config --cflags added to CXXFLAGS= $$QMAKE_CXXFLAGS)
 LIBS+=$$system(sdl2-config  --libs)
 message(output from sdl2-config --libs added to LIB=$$LIBS)
 
-LIBS += -L -lgl32 -lopengl32
+#LIBS += -L -lgl32 -lopengl32
 
 LIBS += -L/usr/local/lib
 
@@ -60,14 +60,14 @@ macx:DEFINES+=DARWIN
 linux-*:DEFINES+=LINUX
 # now if we are under unix and not on a Mac (i.e. linux) define GLEW
 linux-g++:linux-g++-64 {
-    DEFINES += LINUX
+    DEFINES+= LINUX
     LIBS+= -lGLEW
 }
 linux-clang {
-    DEFINES += LINUX
+    DEFINES+= LINUX
     LIBS+= -lGLEW
 }
 
-INCLUDEPATH += "C:\Program Files (x86)\Common Files\SDL2\include"
-LIBS += -L"C:\Program Files (x86)\Common Files\SDL2\lib" -lSDL2 -lSDL2_image
-LIBS +=  -lmingw32 -lSDLmain -lSDL
+#INCLUDEPATH += "C:\Program Files (x86)\Common Files\SDL2\include"
+#LIBS += -L"C:\Program Files (x86)\Common Files\SDL2\lib" -lSDL2 -lSDL2_image
+#LIBS +=  -lmingw32 -lSDLmain -lSDL

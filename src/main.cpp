@@ -20,16 +20,17 @@ void SDLErrorExit(const std::string &_msg);
 /// @brief initialize SDL OpenGL context
 SDL_GLContext createOpenGLContext( SDL_Window *window);
 
-#ifdef WIN32
-int SDL_main(int argc, char *argv[])
-#else
+//#ifdef WIN32
+//int SDL_main(int argc, char *argv[])
+//#else
 int main()
-#endif
+//#endif
 {
 
     // Initialize SDL's Video subsystem
     if (SDL_Init(SDL_INIT_VIDEO) < 0 )
     {
+
       // Or die on error
       SDLErrorExit("Unable to initialize SDL");
     }
@@ -69,8 +70,8 @@ int main()
   Vec4 yellow(1,1,0);
   std::cout<<yellow;
   glClear(GL_COLOR_BUFFER_BIT);
-  GLFunctions::perspective(45,float(1024/720),0.01,500);
-  GLFunctions::lookAt(Vec4(0,2,4),Vec4(0,0,0),Vec4(0,1,0));
+  GLFunctions::perspective(45,float(1024/720),0.1,500);
+
 
   SDL_GL_SwapWindow(window);
   glEnable(GL_LIGHTING);
@@ -101,39 +102,47 @@ int main()
       {
         // this is the window x being clicked.
         case SDL_QUIT : quit = true; break;
+        case SDL_MOUSEBUTTONDOWN:
+        {
+           world.fireBullet();
+           break;
+        }
+
         // if the window is re-sized pass it to the ngl class to change gl viewport
         // note this is slow as the context is re-create by SDL each time
 
-        // now we look for a keydown event
-        case SDL_KEYDOWN:
-        {
-          switch( event.key.keysym.sym )
-          {
-            // if it's the escape key quit
-            case SDLK_ESCAPE :  quit = true; break;
-            case SDLK_w : glPolygonMode(GL_FRONT_AND_BACK,GL_LINE); break;
-            case SDLK_s : glPolygonMode(GL_FRONT_AND_BACK,GL_FILL); break;
-            case SDLK_LEFT :  world.movePlayer(Rocket::LEFT); break;
-            case SDLK_RIGHT : world.movePlayer(Rocket::RIGHT); break;
-            case SDLK_UP : world.movePlayer(Rocket::THRUST);break;
-            //case SDLK_SPACE : world.player.fire();break;
 
-            default : break;
-          } // end of key process
-        } // end of keydown
 
         default : break;
       } // end of event switch
     } // end of poll events
+    
+    
+    const unsigned char *keys = SDL_GetKeyboardState(NULL);
+    
+    SDL_PumpEvents();
+    
+    if(keys[SDL_SCANCODE_ESCAPE]) { quit = true; }
+    if(keys[SDL_SCANCODE_W])      { world.movePlayer(Rocket::THRUST, 0); }
+    if(keys[SDL_SCANCODE_UP])     {glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);}
+    if(keys[SDL_SCANCODE_DOWN])   {glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);}
+    if(keys[SDL_SCANCODE_SPACE])  {world.fireBullet();}
+
+    int mouse_x=0, mouse_y=0;
+    SDL_GetMouseState(&mouse_x, &mouse_y);
+
+    world.movePlayer(Rocket::TURN, mouse_x);
+
+    GLFunctions::lookAt(Vec4(0,2,4),Vec4(0,0,0),Vec4(0,1,0));
 
 //    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    // now draw etc
+//    // now draw etc
 //    yellow.colourGL();
 //    glRotatef(1.0,1,1 ,1);
 //    GLFunctions::cube(1.0f,1.0f,1.0f);
 //    glPushMatrix();
 //      glTranslatef(0,1,0);
-//      red.colourGL();
+//    //  red.colourGL();
 //      GLFunctions::sphere(0.5,30);
 //    glPopMatrix();
 //    glPushMatrix();
@@ -142,7 +151,7 @@ int main()
 //      GLFunctions::capsule(0.2,0.6,30);
 //    glPopMatrix();
 
-//    glPushMatrix();
+//{    glPushMatrix();
 //      glTranslatef(1,1,0);
 //      white.colourGL();
 //      GLFunctions::cylinder(0.5,2.0,30,30);
@@ -175,9 +184,11 @@ int main()
 
   }
   // now tidy up and exit SDL
- SDL_Quit();
-}
+  SDL_Quit();
 
+  return EXIT_SUCCESS;
+
+}
 
 SDL_GLContext createOpenGLContext(SDL_Window *window)
 {

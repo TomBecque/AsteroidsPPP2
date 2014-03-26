@@ -63,7 +63,7 @@ class Vec4
     void normalGL() const;
     void vertexGL() const;
     void normalize();
-
+    void translateGL() const;
     void set(float _x, float _y, float _z, float _w = 1.0);
 
     union

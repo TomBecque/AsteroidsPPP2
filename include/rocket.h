@@ -3,21 +3,15 @@
 #include "rigidbodies.h"
 #include "Mat4.h"
 #include "bullet.h"
-#include <Vector>
+#include "vector"
 
 class Rocket: public RigidBodies
 {
 public:
   typedef enum {
-    LEFT,
-    RIGHT,
+    TURN,
     THRUST
   } direction;
-
-  typedef enum {
-    CWISE,
-    ANTICWISE
-  } rotation;
 
 
 
@@ -28,13 +22,11 @@ public:
   {;}
 
 
-  void turn(direction _move);
+  void move(direction _move, float _rotation);
   void getInput();
   void destroy();
-  void draw() const;
+  void draw();
   void fire();
-
-
 
   float m_collisionRad;
   float m_rotation;

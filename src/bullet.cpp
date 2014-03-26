@@ -3,14 +3,22 @@
 #include "GLFunctions.h"
 #include "rocket.h"
 
-Bullet::Bullet()
-{
-}
-
-//Bullet::spawn()
+//Bullet::Bullet(const Vec4 &_pos, const Vec4 &_colour, const Vec4 &_size)
 //{
 
-//  glTranslatef( (0.1*sin((PI *Rocket.m_rotation)/180)), 0, (0.1*cos((PI *Rocket.m_rotation)/180)) );
-//  GLFunctions::cube(0.2f,0.2f,0.2f);
-
 //}
+
+void Bullet::draw()
+{
+  Vec4 position = m_position*(m_time/2);
+
+  glPushMatrix();
+    m_colour.colourGL();
+    position.translateGL();
+    GLFunctions::cube( 0.2f, 0.2f, 0.2f );
+  glPopMatrix();
+
+  update();
+
+}
+

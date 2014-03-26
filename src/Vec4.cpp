@@ -129,6 +129,11 @@ void Vec4::vertexGL() const
   glVertex3f(m_x,m_y,m_z);
 }
 
+void Vec4::translateGL() const
+{
+  glTranslatef(m_x, m_y, m_z);
+}
+
 void Vec4::set(float _x, float _y, float _z, float _w)
 {
   m_x=_x;

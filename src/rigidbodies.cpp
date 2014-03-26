@@ -13,5 +13,9 @@ void RigidBodies::drawSphere()
     red.colourGL();
     GLFunctions::sphere(0.5,30);
   glPopMatrix();
+}
 
+void RigidBodies::update()
+{
+  m_time++;
 }

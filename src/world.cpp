@@ -1,39 +1,47 @@
 #include "World.h"
 #include "GLFunctions.h"
 #include "util.h"
+#include "asteroid.h"
+#include "bullet.h"
 
 
 
-void World::draw() const
+
+void World::draw()
 {
   Vec4 background(0.0f, 0.0f, 0.0f);
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+  glEnable (GL_DEPTH_TEST);
   background.colourGL();
 
-  glEnable (GL_DEPTH_TEST);
-  GLFunctions::sphere(m_worldSize,30);
+  for(int i = 0;i<sizeof(m_asteroids);i++)
+  {
+    m_asteroids[i].draw();
+  }
+
+
+
+  glPushMatrix();
+    GLFunctions::sphere(m_worldSize,30);
 
   // Draw player/asteroids
 
-  m_player.draw();
-
-
-
+    m_player.draw();
+  glPopMatrix();
 }
 
-void World::movePlayer(Rocket::direction _move)
+void World::movePlayer(Rocket::direction _move, float _rotation)
 {
-  m_player.turn(_move);
+  m_player.move(_move,_rotation);
 }
 
 void World::spawnAsteroid()
 {
-  float radius = utils::floatRand(m_worldSize/8);
-  Vec4 position = Vec4(utils::floatRand(m_worldSize), 0, utils::floatRand(m_worldSize));
-  Vec4 colour = Vec4(0.5f, 0.5f, 0.5f);
+  Vec4 position = Vec4(utils::floatRand(m_worldSize/10), 0, utils::floatRand(-m_worldSize));
+  Vec4 colour = Vec4(0.36f, 0.25f, 0.2f);
   Vec4 scale = Vec4(1.0f, 1.0f, 1.0f);
+  float radius = utils::floatRand(m_worldSize/50);
 
   Asteroid tmp(position, colour, scale, radius);
 
@@ -50,11 +58,7 @@ void World::initAsteroid()
   }
 }
 
-void World::initRocket()
+void World::fireBullet()
 {
-//  Vec4 _position = Vec4(0,0,0);
-//  Vec4 _colour = Vec4(0.5f,0.5f,0.5f);
-//  Vec4 _size = Vec4(1,1,1);
-
-//  m_player
+  m_player.fire();
 }
