@@ -1,6 +1,7 @@
-#ifndef VEC4_H__
+  #ifndef VEC4_H__
 #define VEC4_H__
 #include <ostream>
+#include "Mat4.h"
 
 class Vec4
 {
@@ -65,6 +66,7 @@ class Vec4
     void normalize();
     void translateGL() const;
     void set(float _x, float _y, float _z, float _w = 1.0);
+    Vec4 matXVec(Mat4 _mat, Vec4 _vec);
 
     union
     {

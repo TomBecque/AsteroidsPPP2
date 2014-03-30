@@ -19,9 +19,7 @@
 void SDLErrorExit(const std::string &_msg);
 
 /// @brief initialize SDL OpenGL context
-SDL_GLContext createOpenGLContext(SDL_Window *window);
-
-
+SDL_GLContext createOpenGLContext( SDL_Window *window);
 
 //#ifdef WIN32
 //int SDL_main(int argc, char *argv[])
@@ -71,7 +69,7 @@ int main()
 //  Vec4 blue(0,0,1);
 //  Vec4 white(1,1,1);
 //  Vec4 yellow(1,1,0);
-  //std::cout<<yellow;
+  std::cout<<yellow;
   glClear(GL_COLOR_BUFFER_BIT);
   GLFunctions::perspective(45,float(1024/720),0.1,500);
 
@@ -138,9 +136,6 @@ int main()
     SDL_GetMouseState(&mouse_x, &mouse_y);
 
     world.movePlayer(offset, mouse_x);
-
-
-
     camera.setPos(world.getPlayerPosition());
     camera.rotateCam(world.getPlayerPosition());
     GLFunctions::lookAt((camera.m_position)/*camera.m_lookPos*/,world.getPlayerPosition(),Vec4(0,1,0));
@@ -199,6 +194,7 @@ int main()
   SDL_Quit();
 
   return EXIT_SUCCESS;
+
 }
 
 SDL_GLContext createOpenGLContext(SDL_Window *window)

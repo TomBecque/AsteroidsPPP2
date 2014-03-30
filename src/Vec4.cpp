@@ -143,7 +143,19 @@ void Vec4::set(float _x, float _y, float _z, float _w)
 }
 
 
+Vec4 Vec4::matXVec(Mat4 _mat, Vec4 _vec)
+{
+  Vec4 vecTmp = (1,1,1);
+  for(int j=0;j<4;j++)
+  {
+    for(int i=0;i<4;i++)
+    {
+      vecTmp.m_openGL[j] += _mat.m_m[i][j] * _vec.m_openGL[i];
 
+    }
+  }
+  return vecTmp;
+}
 
 
 

@@ -10,6 +10,7 @@
 
 #include "Vec4.h"
 #include <cmath>
+#include "Mat4.h"
 
 const static float TWO_PI= float(2*M_PI); //6.28318530717958647692   //360
 const static float PI=float(M_PI); //3.14159265358979323846       //180
@@ -30,6 +31,7 @@ class GLFunctions
     static void cone(float _base,float _height,  int _slices, int _stacks  );
     static void disk(float _radius,  int _slices );
     static void torus( float _minorRadius, float _majorRadius,int _nSides, int _nRings);
+
 private :
     GLFunctions();
     ~GLFunctions();

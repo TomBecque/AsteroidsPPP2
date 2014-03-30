@@ -10,30 +10,30 @@ SOURCES=src/main.cpp \
         src/GLFunctions.cpp \
         src/Vec4.cpp \
         src/Mat4.cpp \
-    src/rigidbodies.cpp \
-    src/rocket.cpp \
-    src/asteroid.cpp \
-    src/hud.cpp \
-    src/world.cpp \
-    src/camera.cpp \
-    src/bullet.cpp \
-    src/map.cpp \
-    src/util.cpp
+        src/rigidbodies.cpp \
+        src/rocket.cpp \
+        src/asteroid.cpp \
+        src/hud.cpp \
+        src/world.cpp \
+        src/camera.cpp \
+        src/bullet.cpp \
+        src/map.cpp \
+        src/util.cpp
 
 
 HEADERS+=include/GLFunctions.h \
          include/Vec4.h \
          include/Mat4.h \
-    include/rigidbodies.h \
-    include/rocket.h \
-    include/asteroid.h \
-    include/hud.h \
-    include/world.h \
-    include/camera.h \
-    include/bullet.h \
-    include/map.h \
-    include/World.h \
-    include/util.h
+        include/rigidbodies.h \
+        include/rocket.h \
+        include/asteroid.h \
+        include/hud.h \
+        include/world.h \
+        include/camera.h \
+        include/bullet.h \
+        include/map.h \
+        include/World.h \
+        include/util.h
 
 # add the ngl lib
 # this is where to look for includes

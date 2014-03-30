@@ -10,13 +10,12 @@
 
 void Bullet::draw()
 {
-  Vec4 position =  m_offset + m_position*(3* m_time);
+  Vec4 position = m_position*(m_time);
 
   glPushMatrix();
     m_colour.colourGL();
     position.translateGL();
     GLFunctions::cube( 0.2f, 0.2f, 0.2f );
-
   glPopMatrix();
   update();
 }

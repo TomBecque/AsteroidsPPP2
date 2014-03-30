@@ -19,3 +19,14 @@ void RigidBodies::update()
 {
   m_time++;
 }
+
+
+bool RigidBodies::AABBtoAABB(const bBox &tBox1, const bBox &tBox2)
+{
+  return(tBox1.m_vecMax.m_x > tBox2.m_vecMin.m_x &&
+         tBox1.m_vecMin.m_x < tBox2.m_vecMax.m_x &&
+         tBox1.m_vecMax.m_y > tBox2.m_vecMin.m_y &&
+         tBox1.m_vecMin.m_y < tBox2.m_vecMax.m_y &&
+         tBox1.m_vecMax.m_z > tBox2.m_vecMin.m_z &&
+         tBox1.m_vecMin.m_z < tBox2.m_vecMax.m_z);
+}
