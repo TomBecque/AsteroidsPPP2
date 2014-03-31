@@ -17,11 +17,17 @@ public:
     : RigidBodies(_pos, _colour, _size, _vecMin, _vecMax), m_offset(_offset)
   {;}
 
+  ~Bullet();
+
+
+
   void draw();
   void destroy();
 
 
 private:
+
+
   Vec4 m_offset;   // Used to move the bullet's origin to the where it was fired
   Vec4 velocity;
 };

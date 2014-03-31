@@ -10,7 +10,7 @@
 
 void Bullet::draw()
 {
-  Vec4 position =  m_offset + m_position*(3* m_time);
+  Vec4 position = m_offset + m_position*(3* m_time);
 
   glPushMatrix();
     m_colour.colourGL();
@@ -19,6 +19,11 @@ void Bullet::draw()
 
   glPopMatrix();
   update();
+}
+
+Bullet::~Bullet()
+{
+
 }
 
 

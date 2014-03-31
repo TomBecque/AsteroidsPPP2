@@ -31,13 +31,11 @@ public:
   void fire();
   Vec4 getPlayerPosition();
 
-  float m_collisionRad;
-  float m_rotation;
-
-
-
 
 private:
+  //float m_bullets[16];
+  float m_collisionRad;
+  float m_rotation;
   float m_acceleration;
   std::vector<Bullet> m_bullets;
 

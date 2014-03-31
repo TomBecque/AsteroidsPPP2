@@ -10,8 +10,9 @@ public:
            const Vec4& _size,
            const Vec4& _vecMin,
            const Vec4& _vecMax,
-           float _radius)
-    : RigidBodies(_pos, _colour, _size, _vecMin, _vecMax), m_radius(_radius)
+           float _radius,
+           Vec4 _dest)
+    : RigidBodies(_pos, _colour, _size, _vecMin, _vecMax), m_radius(_radius), m_dest(_dest)
   {;}
 
   void destroy();
@@ -20,6 +21,8 @@ public:
 
 private:
   float m_radius;
+  Vec4 m_dest;
+
 
 };
 

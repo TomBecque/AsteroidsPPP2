@@ -20,11 +20,11 @@ public:
     m_playerBox.m_vecMin = _vecMin;
   }
 
-  struct bBox
+  typedef struct BBOX
   {
     Vec4 m_vecMax;
     Vec4 m_vecMin;
-  };
+  } bBox;
 
 
   void drawSphere();

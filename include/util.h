@@ -5,7 +5,7 @@
 namespace utils {
 
 float floatRand(float a);
-
+float floatRandRange(float a, float b);
 }
 
 #endif // UTIL_H

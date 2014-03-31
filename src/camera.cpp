@@ -15,7 +15,7 @@ void Camera::setPos(Vec4 _m_player)
 
   m_rotation = 0.5*mouse_x;
   m_position.m_x =  _m_player.m_x;
-  m_position.m_y = _m_player.m_y + 2;
+  m_position.m_y = _m_player.m_y + 1;
   m_position.m_z = _m_player.m_z + 4;// + 0.1*cos((PI *m_rotation)/180);
 }
 

@@ -38,9 +38,11 @@ void Rocket::draw()
 
 void Rocket::fire()
 {
+
+
   std::cout << "Draw : " << m_position << "\n";
   Vec4 position( (0.1*sin((PI *m_rotation)/180)),
-                 0,
+                  0,
                  (0.1*cos((PI *m_rotation)/180)) );
 
   Vec4 colour = Vec4(1.0f, 1.0f, 1.0f);
@@ -49,6 +51,8 @@ void Rocket::fire()
   Bullet tmp(position, m_position, colour, size, Vec4(-0.1,-0.1,-0.1), Vec4(0.1,0.1,0.1));
 
   m_bullets.push_back(tmp);
+
+  //m_bullets.erase( m_bullets.end() );
 }
 
 
