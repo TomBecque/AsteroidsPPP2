@@ -23,6 +23,7 @@ public:
 
   void draw();
   void destroy();
+  Vec4 getBulletPosition();
 
 
 private:

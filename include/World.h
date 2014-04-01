@@ -16,6 +16,7 @@ public:
                                         Vec4() )
   {;}
 
+  void update();
   void draw();
   void spawnAsteroid();
   void initAsteroid();
@@ -23,6 +24,7 @@ public:
   Vec4 getPlayerPosition();
 
   void movePlayer(float _move, float _rotation);
+
 
 private:
   float m_worldSize;

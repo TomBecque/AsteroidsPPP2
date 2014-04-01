@@ -140,8 +140,9 @@ int main()
     world.movePlayer(offset, mouse_x);
 
 
+    world.update();
 
-    camera.setPos(world.getPlayerPosition());
+    //camera.setPos(world.getPlayerPosition());
     camera.rotateCam(world.getPlayerPosition());
     GLFunctions::lookAt((camera.m_position)/*camera.m_lookPos*/,world.getPlayerPosition(),Vec4(0,1,0));
 

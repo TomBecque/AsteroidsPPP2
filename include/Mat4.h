@@ -11,6 +11,7 @@ class Mat4
   void rotateY(float _deg);
   void rotateZ(float _deg);
   void transpose();
+  Mat4 matXmat(Mat4 _mat1, Mat4 _mat2);
   void loadModelView() const;
   void loadProjection() const;
 

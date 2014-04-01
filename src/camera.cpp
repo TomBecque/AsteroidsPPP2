@@ -21,13 +21,38 @@ void Camera::setPos(Vec4 _m_player)
 
 void Camera::rotateCam(Vec4 _player)
 {
-  Vec4 cam;
   int mouse_x = 0, mouse_y = 0;
   SDL_GetMouseState(&mouse_x,&mouse_y);
-
   m_rotation = 0.5*mouse_x;
+  //m_lookPos.set(1,1,1);
+
+  Mat4 translate;
+  translate.identity();
+  translate.m_30 = _player.m_x;
+  translate.m_31 = _player.m_y;
+  translate.m_32 = _player.m_z;
+
+  m_position.set(1,1,1);
   m_rotMat.rotateY(m_rotation);
-  m_lookPos = cam.matXVec(m_rotMat, _player );
+  translate = translate.matXmat(translate, m_rotMat);
+
+  Mat4 offset;
+  offset.identity();
+  offset.m_30 = 0;
+  offset.m_31 = 1;
+  offset.m_32 = 4;
+  translate = translate.matXmat(translate, offset);
+  m_lookPos = m_lookPos.matXVec(translate, m_position);
+
+
+
+
+
+//  m_position.m_x = _player.m_x;
+//  m_position.m_y = _player.m_y + 1;
+//  m_position.m_z = _player.m_z + 4;// + 0.1*cos((PI *m_rotation)/180);
+
+
 
 
 }

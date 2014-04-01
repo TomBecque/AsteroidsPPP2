@@ -8,6 +8,22 @@
 
 
 
+void World::update()
+{
+  for(int i = 0; i<m_asteroids.size(); i++)
+  {
+    std::vector<Bullet>& bullets = m_player.getBullets();
+    for(int j = 0; j<bullets.size(); j++)
+    {
+      if(bullets[j].checkCollision(m_asteroids[i]))
+      {
+        /*m_asteroids.erase(m_asteroids.begin() + 1)*/std::cout<<"collision!";
+
+
+      }
+    }
+  }
+}
 
 void World::draw()
 {
@@ -20,7 +36,6 @@ void World::draw()
   for(int i = 0; i<m_asteroids.size(); i++)
   {
     m_asteroids[i].draw();
-
   }
 
 
@@ -51,14 +66,14 @@ void World::spawnAsteroid()
                    0,
                    utils::floatRandRange(-m_worldSize, m_worldSize));
 
-  Asteroid tmp(position, colour, scale,Vec4(-1,-1,-1), Vec4(1,1,1), radius, dest );
+  Asteroid tmp(position, colour, scale,Vec4(position.m_x-radius,position.m_y-radius,position.m_z-radius), Vec4(position.m_x + radius,position.m_y + radius,position.m_z + radius), radius, dest );
 
   m_asteroids.push_back(tmp);
 }
 
 void World::initAsteroid()
 {
-  for(int i=0;i<30;i++)
+  for(int i=0;i<1;i++)
   {
     spawnAsteroid();
   }

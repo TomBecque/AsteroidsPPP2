@@ -16,8 +16,8 @@ public:
     : m_colour(_colour), m_size(_size), m_position(_pos),
       m_direction(Vec4(0,0,0)), m_speed(0.0f), m_time(0)
   {
-    m_playerBox.m_vecMax = _vecMax;
-    m_playerBox.m_vecMin = _vecMin;
+    m_bodyBox.m_vecMax = _vecMax;
+    m_bodyBox.m_vecMin = _vecMin;
   }
 
   typedef struct BBOX
@@ -28,7 +28,7 @@ public:
 
 
   void drawSphere();
-  bool AABBtoAABB(const bBox &tBox1, const bBox &tBox2);
+  bool checkCollision(const RigidBodies& _obstacle);
   Vec4 getPos() const { return m_position; }
 
 protected:
@@ -39,7 +39,7 @@ protected:
   Vec4 m_direction;
   float m_speed;
   int m_time;
-  bBox m_playerBox;
+  bBox m_bodyBox;
 
 
   void update();

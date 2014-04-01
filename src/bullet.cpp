@@ -12,6 +12,7 @@ void Bullet::draw()
 {
   Vec4 position = m_offset + m_position*(3* m_time);
 
+
   glPushMatrix();
     m_colour.colourGL();
     position.translateGL();
@@ -26,4 +27,7 @@ Bullet::~Bullet()
 
 }
 
-
+Vec4 Bullet::getBulletPosition()
+{
+  return m_position;
+}

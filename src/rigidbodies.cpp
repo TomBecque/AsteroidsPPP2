@@ -21,12 +21,12 @@ void RigidBodies::update()
 }
 
 
-bool RigidBodies::AABBtoAABB(const bBox &tBox1, const bBox &tBox2)
+bool RigidBodies::checkCollision(const RigidBodies& _obstacle)
 {
-  return(tBox1.m_vecMax.m_x > tBox2.m_vecMin.m_x &&
-         tBox1.m_vecMin.m_x < tBox2.m_vecMax.m_x &&
-         tBox1.m_vecMax.m_y > tBox2.m_vecMin.m_y &&
-         tBox1.m_vecMin.m_y < tBox2.m_vecMax.m_y &&
-         tBox1.m_vecMax.m_z > tBox2.m_vecMin.m_z &&
-         tBox1.m_vecMin.m_z < tBox2.m_vecMax.m_z);
+  return(m_bodyBox.m_vecMax.m_x > _obstacle.m_bodyBox.m_vecMin.m_x &&
+         m_bodyBox.m_vecMin.m_x < _obstacle.m_bodyBox.m_vecMax.m_x &&
+         m_bodyBox.m_vecMax.m_y > _obstacle.m_bodyBox.m_vecMin.m_y &&
+         m_bodyBox.m_vecMin.m_y < _obstacle.m_bodyBox.m_vecMax.m_y &&
+         m_bodyBox.m_vecMax.m_z > _obstacle.m_bodyBox.m_vecMin.m_z &&
+         m_bodyBox.m_vecMin.m_z < _obstacle.m_bodyBox.m_vecMax.m_z);
 }

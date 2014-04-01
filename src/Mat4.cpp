@@ -104,6 +104,8 @@ void Mat4::loadProjection() const
 
 
 
+
+
 Mat4::Mat4(const Mat4 &_r)
 {
   memcpy(m_m,&_r.m_m, sizeof(m_m));
@@ -123,4 +125,21 @@ return _output
   <<"["<<_v.m_02<<","<<_v.m_12<<","<<_v.m_22<<","<<_v.m_32<<"]\n"
   <<"["<<_v.m_03<<","<<_v.m_13<<","<<_v.m_23<<","<<_v.m_33<<"]\n";
 
+}
+
+
+Mat4 Mat4::matXmat(Mat4 _mat1, Mat4 _mat2)
+{
+  Mat4 matResult;
+  for(int k = 0; k < 4; k++)
+  {
+    for(int j = 0; j < 4; j++)
+    {
+      for(int i = 0; i < 4; i++)
+      {
+        matResult.m_m[k][j] += _mat1.m_m[i][j] * _mat2.m_m[k][i];
+      }
+    }
+  }
+  return matResult;
 }
