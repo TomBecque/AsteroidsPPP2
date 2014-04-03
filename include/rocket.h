@@ -17,11 +17,15 @@ public:
 
   Rocket(const Vec4& _pos,
          const Vec4& _colour,
-         const Vec4& _size,
-         const Vec4& _vecMin,
-         const Vec4& _vecMax) :
-     RigidBodies(_pos, _colour, _size, _vecMin, _vecMax), m_acceleration(0)
-  {;}
+         const Vec4& _size) :
+     RigidBodies(_pos, _colour, _size, BT_ROCKET), m_acceleration(0)
+  {    m_bodyBox.m_vecMax = Vec4(_pos.m_x + (_size.m_x/2),
+                                 _pos.m_y + (_size.m_y/2),
+                                 _pos.m_z + (_size.m_z/2) );
+
+       m_bodyBox.m_vecMin = Vec4(_pos.m_x - (_size.m_x/2),
+                                 _pos.m_y - (_size.m_y/2),
+                                 _pos.m_z - (_size.m_z/2) );}
 
 
   void move(float _offset, float _rotation);
@@ -32,13 +36,14 @@ public:
   Vec4 getPlayerPosition();
   std::vector<Bullet>& getBullets() {return m_bullets;}
 
-
-private:
-
   float m_collisionRad;
   float m_rotation;
   float m_acceleration;
   std::vector<Bullet> m_bullets;
+
+private:
+
+
 
 
 };

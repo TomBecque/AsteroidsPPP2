@@ -24,7 +24,8 @@ void Bullet::draw()
 
 Bullet::~Bullet()
 {
-
+  delete this;
+  std::cout<<"bullet dtor called";
 }
 
 Vec4 Bullet::getBulletPosition()

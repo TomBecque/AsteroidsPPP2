@@ -11,13 +11,17 @@ public:
   Bullet(const Vec4& _pos,
          const Vec4& _offset,
          const Vec4& _colour,
-         const Vec4& _size,
-         const Vec4& _vecMin,
-         const Vec4& _vecMax)
-    : RigidBodies(_pos, _colour, _size, _vecMin, _vecMax), m_offset(_offset)
-  {;}
+         const Vec4& _size)
+    : RigidBodies(_pos, _colour, _size, BT_BULLET), m_offset(_offset)
+  {    m_bodyBox.m_vecMax = Vec4(_pos.m_x + (_size.m_x/2),
+                                 _pos.m_y + (_size.m_y/2),
+                                 _pos.m_z + (_size.m_z/2) );
 
-  ~Bullet();
+       m_bodyBox.m_vecMin = Vec4(_pos.m_x - (_size.m_x/2),
+                                 _pos.m_y - (_size.m_y/2),
+                                 _pos.m_z - (_size.m_z/2) );}
+
+  virtual ~Bullet();
 
 
 

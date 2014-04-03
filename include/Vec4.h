@@ -52,7 +52,7 @@ class Vec4
 
    //-----------------------------------------------------------------
     Vec4 operator *(float _rhs);
-    Vec4 operator -(const Vec4 &_rhs);
+    Vec4 operator -(const Vec4 &_rhs) const;
     void operator *=(float _rhs);
 
     Vec4 operator +(const Vec4 &_rhs) const;

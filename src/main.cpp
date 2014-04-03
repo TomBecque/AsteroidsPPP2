@@ -88,11 +88,16 @@ int main()
   // sdl event processing data structure
   SDL_Event event;
 
+
   const float worldSize = 32.0f;
   World world(worldSize);
   Camera camera;
 
+//  Asteroid a(Vec4(0,0,0), Vec4(1,0,0), Vec4(0.1,0.1,0.1), 0.1, Vec4());
+//  Asteroid b(Vec4(0,0.05,0), Vec4(0,1,0), Vec4(0.1,0.1,0.1), 0.1, Vec4());
+
   world.initAsteroid();
+  world.initRocket();
 
   // now we create an instance of our ngl class, this will init NGL and setup basic
   // opengl stuff ext. When this falls out of scope the dtor will be called and cleanup
@@ -108,7 +113,7 @@ int main()
         case SDL_QUIT : quit = true; break;
         case SDL_MOUSEBUTTONDOWN:
         {
-           world.fireBullet();
+           world.makeBullets();;
            break;
         }
 
@@ -132,18 +137,22 @@ int main()
     if(keys[SDL_SCANCODE_W])      { offset = 0.1f; }
     if(keys[SDL_SCANCODE_UP])     {glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);}
     if(keys[SDL_SCANCODE_DOWN])   {glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);}
-    if(keys[SDL_SCANCODE_SPACE])  {world.fireBullet();}
+    if(keys[SDL_SCANCODE_SPACE])  {world.makeBullets();}
 
     int mouse_x=0, mouse_y=0;
     SDL_GetMouseState(&mouse_x, &mouse_y);
 
-    world.movePlayer(offset, mouse_x);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    world.movePlayer(offset, mouse_x);
 
     world.update();
 
-    //camera.setPos(world.getPlayerPosition());
-    camera.rotateCam(world.getPlayerPosition());
+//    std::cout << ((a.checkCollision(b)) ? "Collide" : "No collide") << "\n";
+
+    camera.setPos(world.getPlayerPosition());
+    camera.rotateCam(camera.m_position);
+
     GLFunctions::lookAt((camera.m_position)/*camera.m_lookPos*/,world.getPlayerPosition(),Vec4(0,1,0));
 
 
