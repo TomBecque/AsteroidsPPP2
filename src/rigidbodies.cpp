@@ -10,7 +10,7 @@ void RigidBodies::drawSphere()
   glPopMatrix();
 }
 
-void RigidBodies::update()
+void RigidBodies::update(float _offset, float _rotation)
 {
   m_time++;
 }
@@ -18,17 +18,27 @@ void RigidBodies::update()
 //checks if one point of an object is inside another object and
 //returns a true or false value
 
+/**
+ * @brief RigidBodies::checkCollision
+ * @param _obstacle The obstacle I'm testing
+ * @return true if collision happened
+ */
 bool RigidBodies::checkCollision(RigidBodies* _obstacle)
 {
   //std::cout << "body bounds"<< m_bodyBox.m_vecMax << "," << m_bodyBox.m_vecMin<<"\n" ;
- // std::cout << "obstacle bounds"<< _obstacle->m_bodyBox.m_vecMax << "," << _obstacle->m_bodyBox.m_vecMin<<"\n" ;
+  //std::cout << "obstacle bounds"<< _obstacle->m_bodyBox.m_vecMax << "," << _obstacle->m_bodyBox.m_vecMin<<"\n" ;
+  Vec4 min = m_bodyBox.m_vecMin + m_position;
+  Vec4 max = m_bodyBox.m_vecMax + m_position;
 
-  return((m_bodyBox.m_vecMax.m_x > _obstacle->m_bodyBox.m_vecMin.m_x) &&
-         (m_bodyBox.m_vecMin.m_x < _obstacle->m_bodyBox.m_vecMax.m_x) &&
-         (m_bodyBox.m_vecMax.m_y > _obstacle->m_bodyBox.m_vecMin.m_y) &&
-         (m_bodyBox.m_vecMin.m_y < _obstacle->m_bodyBox.m_vecMax.m_y) &&
-         (m_bodyBox.m_vecMax.m_z > _obstacle->m_bodyBox.m_vecMin.m_z) &&
-         (m_bodyBox.m_vecMin.m_z < _obstacle->m_bodyBox.m_vecMax.m_z));
+  Vec4 other_min = _obstacle->m_bodyBox.m_vecMin + _obstacle->m_position;
+  Vec4 other_max = _obstacle->m_bodyBox.m_vecMax + _obstacle->m_position;
+
+  return((max.m_x > other_min.m_x) &&
+         (min.m_x < other_max.m_x) &&
+         (max.m_y > other_min.m_y) &&
+         (min.m_y < other_max.m_y) &&
+         (max.m_z > other_min.m_z) &&
+         (min.m_z < other_max.m_z));
 
 }
 

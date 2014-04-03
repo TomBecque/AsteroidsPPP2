@@ -36,7 +36,6 @@ public:
 private:
   float m_worldSize;
   Rocket m_player;
-  std::vector<Asteroid> m_asteroids;
   std::vector<RigidBodies*> m_bodies;
 };
 

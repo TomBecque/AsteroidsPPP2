@@ -5,18 +5,18 @@
 
 void Asteroid::draw()
 {
-  Vec4 position = (m_dest + m_position * (0.001 * m_time ));
+//  Vec4 _position = (m_dest + m_position * (0.001 * m_time ));
 
 //  std::cout<< "asteroid position"<< position;
-
+  update();
 
   glPushMatrix();
     m_colour.colourGL();
-    position.translateGL();
+    m_position.translateGL();
     GLFunctions::sphere(m_radius, 30);
   glPopMatrix();
 
-  update();
+
 }
 
 void Asteroid::split()
@@ -30,3 +30,9 @@ Vec4 Asteroid::getAsteroidPos()
   return (m_dest + m_position * (0.001 * m_time ));
 }
 
+void Asteroid::update()
+{
+//  m_position = m_position + ((m_dest - m_position) * 0.001 * m_time);
+  m_position = (m_dest + m_position * (0.001 * m_time ));
+  RigidBodies::update();
+}

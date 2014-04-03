@@ -35,6 +35,8 @@ public:
   void fire();
   Vec4 getPlayerPosition();
   std::vector<Bullet>& getBullets() {return m_bullets;}
+  void update(float _offset, float _rotation);
+
 
   float m_collisionRad;
   float m_rotation;

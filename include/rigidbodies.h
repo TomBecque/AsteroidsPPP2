@@ -5,6 +5,10 @@
 
 #include <iostream>
 
+/**
+ * @brief The RigidBodies class
+ *
+ */
 class RigidBodies
 {
 public:
@@ -39,10 +43,13 @@ public:
 
   virtual void draw() = 0;
 
+  virtual void update(float _offset=0.0f, float _rotation=0.0f);
 
   void drawSphere();
   bool checkCollision(RigidBodies *_obstacle);
   Vec4 getPos() const { return m_position; }
+
+
 
   Vec4 m_vertArray;
   Vec4 m_colour;
@@ -60,7 +67,7 @@ protected:
 
 
 
-  void update();
+
 };
 
 #endif // RIGIDBODIES_H

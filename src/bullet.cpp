@@ -10,25 +10,31 @@
 
 void Bullet::draw()
 {
-  Vec4 position = m_offset + m_position*(3* m_time);
+//  Vec4 position = m_offset + m_position*(3* m_time);
 
-
+  update();
   glPushMatrix();
     m_colour.colourGL();
-    position.translateGL();
+    m_position.translateGL();
     GLFunctions::cube( 0.2f, 0.2f, 0.2f );
 
   glPopMatrix();
-  update();
+
 }
 
-Bullet::~Bullet()
-{
-  delete this;
-  std::cout<<"bullet dtor called";
-}
+//Bullet::~Bullet()
+//{
+//  //delete this;
+//  std::cout<<"bullet dtor called";
+//}
 
 Vec4 Bullet::getBulletPosition()
 {
   return m_position;
+}
+
+void Bullet::update()
+{
+  m_position = m_position + ((m_offset - m_position) * 3* m_time );
+  RigidBodies::update();
 }

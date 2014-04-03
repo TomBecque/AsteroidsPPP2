@@ -37,7 +37,9 @@ void World::update()
   BodyVector::iterator it, bit;
   for (it = m_bodies.begin(); it != m_bodies.end(); ++it) {
     for (bit = m_bodies.begin(); bit != m_bodies.end(); ++bit) {
-      if ((*it)->checkCollision(*bit)) {
+
+      if ((it != bit) && ((*it)->checkCollision(*bit))) {
+        std::cout<< "COLLISION";
         if ((((*it)->getType() == RigidBodies::BT_ASTEROID) &&
              ((*bit)->getType() == RigidBodies::BT_BULLET)) ||
             (((*it)->getType() == RigidBodies::BT_BULLET) &&
@@ -88,7 +90,7 @@ void World::draw()
 ///-----------------------------------------------------------------------------------
 void World::movePlayer(float _move, float _rotation)
 {
-  m_player.move(_move, _rotation);
+  m_player.update(_move, _rotation);
 }
 ///-----------------------------------------------------------------------------------
 void World::spawnAsteroid()

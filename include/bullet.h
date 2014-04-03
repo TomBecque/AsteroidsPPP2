@@ -21,18 +21,15 @@ public:
                                  _pos.m_y - (_size.m_y/2),
                                  _pos.m_z - (_size.m_z/2) );}
 
-  virtual ~Bullet();
-
-
+//  virtual ~Bullet();
 
   void draw();
   void destroy();
   Vec4 getBulletPosition();
+  void update();
 
 
 private:
-
-
   Vec4 m_offset;   // Used to move the bullet's origin to the where it was fired
   Vec4 velocity;
 };
