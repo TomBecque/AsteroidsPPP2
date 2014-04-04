@@ -24,17 +24,6 @@ void Rocket::update(float _offset, float _rotation)
 void Rocket::draw()
 {
 
-//  for(uint i=0;i<m_bullets.size();i++)
-//  {
-//    m_bullets[i].draw();
-
-//    Vec4 tmp = Bullet::getBulletPosition();
-
-//    if(tmp == (fabsf(10.0), fabsf(10.0), fabsf(10.0)) )
-//    {
-//      m_bullets.erase( m_bullets.begin() + i );
-//    }
-
 
   glPushMatrix();
     m_position.translateGL();
@@ -46,23 +35,7 @@ void Rocket::draw()
 
 }
 
-void Rocket::fire()
-{
-//  std::cout << "Draw : " << m_position << "\n";
-//  Vec4 position( (0.1*sin((PI *m_rotation)/180)),
-//                  0,
-//                 (0.1*cos((PI *m_rotation)/180)) );
-//  Vec4 colour = Vec4(1.0f, 1.0f, 1.0f);
-//  Vec4 size = Vec4(0.2f, 0.2f, 0.2f);
 
-//  Bullet tmp(position, m_position, colour, size );
-             //Vec4(position.m_x - 0.1, position.m_y - 0.1, position.m_z - 0.1),
-             //Vec4(position.m_x + 0.1,position.m_y + 0.1,position.m_z + 0.1));
-
-//  m_bullets.push_back(tmp);
-
-
-}
 
 
 Vec4 Rocket::getPlayerPosition()

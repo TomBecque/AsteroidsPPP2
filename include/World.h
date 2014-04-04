@@ -22,18 +22,15 @@ public:
   void draw();
   void spawnAsteroid();
   void initAsteroid();
-  void fireBullet();
   Vec4 getPlayerPosition();
   void movePlayer(float _move, float _rotation);
-//  void playerAsteroidCheck();
   void makeBullets();
-  float getPlayerRotation();
   void initRocket();
-  void drawRocket();
-  void drawAsteroids();
-  void drawBullets();
-
+  void splitAsteroids(RigidBodies* _selected);
 private:
+
+  float getPlayerRotation();
+
   float m_worldSize;
   Rocket m_player;
   std::vector<RigidBodies*> m_bodies;

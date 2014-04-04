@@ -8,30 +8,18 @@ public:
   Asteroid(const Vec4& _pos,
            const Vec4& _colour,
            const Vec4& _size,
-           float _radius,
-           Vec4 _direction)
+           Vec4 _direction,
+           float _radius)
     : RigidBodies(_pos, _colour, _size, BT_ASTEROID), m_radius(_radius), m_direction(_direction)
   {
-//    m_bodyBox.m_vecMax = Vec4((_pos.m_x + (m_radius) /2),
-//                          (_pos.m_y + (m_radius) /2),
-//                          (_pos.m_z + (m_radius) /2) );
+//sets the bbox max and min vector to be the radius or -radius of the asteroid
+            m_bodyBox.m_vecMax = m_radius;
 
-//    m_bodyBox.m_vecMin = Vec4((_pos.m_x - (m_radius) /2),
-//                          (_pos.m_y - (m_radius) /2),
-//                          (_pos.m_z - (m_radius)  /2) );
-            m_bodyBox.m_vecMax = Vec4(m_radius,m_radius,m_radius)/*Vec4(m_position.m_x + (_size.m_x/2),
-                                     m_position.m_y + (_size.m_y/2),
-                                     m_position.m_z + (_size.m_z/2) )*/;
+            m_bodyBox.m_vecMin = Vec4(-m_radius,-m_radius,-m_radius);
+  }
 
-            m_bodyBox.m_vecMin = Vec4(-m_radius,-m_radius,-m_radius)/*(m_position.m_x - (_size.m_x/2),
-                                      m_position.m_y - (_size.m_y/2),
-                                      m_position.m_z - (_size.m_z/2) )*/
-  ;}
-
-  void destroy();
-  void split();
+  ~Asteroid();
   void draw();
-  Vec4 getAsteroidPos();
   void update();
 
 private:

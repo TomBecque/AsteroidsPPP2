@@ -22,7 +22,8 @@ public:
               const Vec4& _colour,
               const Vec4& _size,
               const BodyType &_type)
-  : m_colour(_colour), m_size(_size), m_position(_pos),m_direction(Vec4(0,0,0)),m_speed(0.0f), m_time(0), m_type(_type)
+    : m_colour(_colour), m_size(_size), m_position(_pos),m_direction(Vec4(0,0,0)),
+      m_speed(0.0f), m_time(0), m_type(_type)
   {
     m_bodyBox.m_vecMax = Vec4(m_position.m_x + (_size.m_x/2),
                               m_position.m_y + (_size.m_y/2),
@@ -58,7 +59,6 @@ public:
   float m_speed;
   int m_time;
   bBox m_bodyBox;
-
   BodyType m_type;
 
 protected:

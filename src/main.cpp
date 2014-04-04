@@ -68,11 +68,7 @@ int main()
     /* This makes our buffer swap syncronized with the monitor's vertical refresh */
     SDL_GL_SetSwapInterval(1);
   // now clear the screen and swap whilst NGL inits (which may take time)
-//  Vec4 green(0,1,0);
-//  Vec4 blue(0,0,1);
-//  Vec4 white(1,1,1);
-//  Vec4 yellow(1,1,0);
-  //std::cout<<yellow;
+
   glClear(GL_COLOR_BUFFER_BIT);
   GLFunctions::perspective(45,float(1024/720),0.1,500);
 
@@ -94,8 +90,8 @@ int main()
   World world(worldSize);
   Camera camera;
 
-//  Asteroid a(Vec4(0,0,0), Vec4(1,0,0), Vec4(0.1,0.1,0.1), 0.1, Vec4());
-//  Asteroid b(Vec4(0,0.05,0), Vec4(0,1,0), Vec4(0.1,0.1,0.1), 0.1, Vec4());
+
+
 
   world.initAsteroid();
   world.initRocket();
@@ -117,7 +113,7 @@ int main()
         case SDL_QUIT : quit = true; break;
         case SDL_MOUSEBUTTONDOWN:
         {
-           world.makeBullets();;
+           world.makeBullets();
            break;
         }
 
@@ -136,13 +132,15 @@ int main()
     SDL_PumpEvents();
     
     float offset = 0.0f;
-
+//I used scancode to get a more fluid motion and get rid of that first pause
     if(keys[SDL_SCANCODE_ESCAPE]) { quit = true; }
     if(keys[SDL_SCANCODE_W])      { offset = 0.1f; }
     if(keys[SDL_SCANCODE_UP])     {glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);}
     if(keys[SDL_SCANCODE_DOWN])   {glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);}
     if(keys[SDL_SCANCODE_SPACE])  {world.makeBullets();}
 
+
+//input mouse movement
     int mouse_x=0, mouse_y=0;
     SDL_GetMouseState(&mouse_x, &mouse_y);
 
@@ -150,60 +148,14 @@ int main()
 
     world.movePlayer(offset, mouse_x);
 //    world.spawnAsteroid();
-//    std::cout<< util::floatRandRange(-20.0f,20.0f);
-    world.update();
 
-//    std::cout << ((a.checkCollision(b)) ? "Collide" : "No collide") << "\n";
 
     camera.setPos(world.getPlayerPosition());
     camera.rotateCam(camera.m_position);
 
     GLFunctions::lookAt((camera.m_position)/*camera.m_lookPos*/,world.getPlayerPosition(),Vec4(0,1,0));
 
-
-//    Vec4(0.1*sin((0.5*PI*mouse_x)/180)
-//    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    // now draw etc
-//    yellow.colourGL();
-//    glRotatef(1.0,1,1 ,1);
-//    GLFunctions::cube(1.0f,1.0f,1.0f);
-//    glPushMatrix();
-//      glTranslatef(0,1,0);
-//    //  red.colourGL();
-//      GLFunctions::sphere(0.5,30);
-//    glPopMatrix();
-//    glPushMatrix();
-//      glTranslatef(-1,1,0);
-//      blue.colourGL();
-//      GLFunctions::capsule(0.2,0.6,30);
-//    glPopMatrix();
-
-//{    glPushMatrix();
-//      glTranslatef(1,1,0);
-//      white.colourGL();
-//      GLFunctions::cylinder(0.5,2.0,30,30);
-//    glPopMatrix();
-
-//    glPushMatrix();
-//      glColor3f(0,1,0);
-//      glTranslatef(1,-1,0);
-//      GLFunctions::cone(0.5,2.0,30,30);
-//    glPopMatrix();
-
-//    glPushMatrix();
-//      green.colourGL();
-//      glTranslatef(1,1,1);
-//      GLFunctions::disk(0.5,30);
-//    glPopMatrix();
-
-//    glPushMatrix();
-//      blue.colourGL();
-//      glTranslatef(0,3,0);
-//      GLFunctions::torus(0.2,1,10,10);
-//    glPopMatrix();
-
-    //rigidBody.drawSphere();
-
+    world.update();
     world.draw();
 
     // swap the buffers

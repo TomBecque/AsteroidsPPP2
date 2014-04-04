@@ -32,7 +32,6 @@ public:
   void getInput();
   void destroy();
   void draw();
-  void fire();
   Vec4 getPlayerPosition();
   std::vector<Bullet>& getBullets() {return m_bullets;}
   void update(float _offset, float _rotation);
