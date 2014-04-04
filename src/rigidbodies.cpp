@@ -34,8 +34,8 @@ bool RigidBodies::checkCollision(RigidBodies* _obstacle)
   Vec4 other_min = _obstacle->m_bodyBox.m_vecMin + _obstacle->m_position;
   Vec4 other_max = _obstacle->m_bodyBox.m_vecMax + _obstacle->m_position;
 
-  std::cout<< "min"<< min ;
-  std::cout<<"max" << max ;
+//  std::cout<< "min"<< min ;
+//  std::cout<<"max" << max ;
   return((max.m_x > other_min.m_x) &&
          (min.m_x < other_max.m_x) &&
          (max.m_y > other_min.m_y) &&

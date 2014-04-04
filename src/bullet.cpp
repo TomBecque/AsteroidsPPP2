@@ -10,14 +10,14 @@
 
 void Bullet::draw()
 {
-  Vec4 position = m_offset + m_position + (m_offset - m_position) * m_time ;// + (( m_time));
+//  Vec4 position = m_offset + m_position + (m_offset - m_position) * m_time ;// + (( m_time));
 //  Vec4 position = m_offset + ((m_position - m_offset)*0.1*m_time );
 
 
   glPushMatrix();
 
     m_colour.colourGL();
-    position.translateGL();
+    m_position.translateGL();
     GLFunctions::cube( 0.2f, 0.2f, 0.2f );
 
   glPopMatrix();
@@ -46,6 +46,6 @@ void Bullet::update()
 //  m_position = m_offset + (position * (m_time));
 
   RigidBodies::update();
-//  m_position = m_offset + ((m_position - m_offset)*0.1*m_time );
+  m_position = m_offset + (m_destination*m_time*3);//((m_position - m_offset)*0.1*m_time );
 
 }

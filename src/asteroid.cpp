@@ -7,7 +7,7 @@ void Asteroid::draw()
 {
   //m_position = (m_dest + (m_position * (0.02*m_time )));
 
-  std::cout<< "asteroid position"<< m_position;
+//  std::cout<< "asteroid position"<< m_position;
 
 //  m_position.m_x = m_position.m_x /2;
 //  m_position.m_y = m_position.m_y /2;
