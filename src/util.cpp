@@ -1,21 +1,23 @@
 #include "util.h"
 #include <cstdlib>
-namespace utils {
+/*namespace*/ /*utils {*/
 
-float floatRand(float a)
+float util::floatRand(float a)
 {
   return (float)rand()/(float)(RAND_MAX/a);
 }
 
-float floatRandRange(float a, float b)
+float util::floatRandRange(float _min, float _max)
 {
-    float random = ((float) rand()) / (float) RAND_MAX;
-    float diff = b - a;
-    float r = random * diff;
-    return a + r;
+//    float random = ((float) rand()) / (float) RAND_MAX;
+//    float diff = b - a;
+//    float r = random * diff;
+//    return a + r;
+
+return ((float)rand() / (float)RAND_MAX) * (_max - _min) + _min;
 }
 
 
-}
+//}
 
 

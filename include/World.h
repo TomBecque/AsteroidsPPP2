@@ -12,11 +12,11 @@ class World
 {
 public:
   World(float _worldSize, const Vec4& _spawnPosition = Vec4(0,0,0))
-    : m_worldSize(_worldSize), m_player(_spawnPosition, Vec4( 0.5f, 0.5f, 0.5f ),
-                                                        Vec4(1.0f, 1.0f, 1.0f) )
+    : m_worldSize(_worldSize), m_player(_spawnPosition, Vec4( 0.0f, 0.0f, 0.0f ),
+                                                        Vec4(1.16f, 1.16f, 1.16f) )
   {;}
 
-  virtual ~World();
+  ~World();
 
   void update();
   void draw();

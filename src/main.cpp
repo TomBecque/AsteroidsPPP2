@@ -14,6 +14,7 @@
 #include "SDL2/SDL_main.h"
 #include "camera.h"
 #include "math.h"
+#include "util.h"
 /// @brief function to quit SDL with error message
 /// @param[in] _msg the error message to send
 void SDLErrorExit(const std::string &_msg);
@@ -99,6 +100,9 @@ int main()
   world.initAsteroid();
   world.initRocket();
 
+
+
+
   // now we create an instance of our ngl class, this will init NGL and setup basic
   // opengl stuff ext. When this falls out of scope the dtor will be called and cleanup
   // our gl stuff
@@ -145,7 +149,8 @@ int main()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     world.movePlayer(offset, mouse_x);
-
+//    world.spawnAsteroid();
+//    std::cout<< util::floatRandRange(-20.0f,20.0f);
     world.update();
 
 //    std::cout << ((a.checkCollision(b)) ? "Collide" : "No collide") << "\n";

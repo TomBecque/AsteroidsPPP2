@@ -14,7 +14,7 @@ void Rocket::update(float _offset, float _rotation)
   m_position.m_x += _offset * sin((PI * m_rotation)/180);
   m_position.m_z += _offset * cos((PI * m_rotation)/180);
 
-  RigidBodies::update();
+//  RigidBodies::update();
 
 //  std::cout << m_rotation     << std::endl;
 //  std::cout << m_position.m_x << std::endl;

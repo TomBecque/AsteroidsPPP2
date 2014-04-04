@@ -13,13 +13,13 @@ public:
          const Vec4& _colour,
          const Vec4& _size)
     : RigidBodies(_pos, _colour, _size, BT_BULLET), m_offset(_offset)
-  {    m_bodyBox.m_vecMax = Vec4(_pos.m_x + (_size.m_x/2),
+  {    /*m_bodyBox.m_vecMax = Vec4(_pos.m_x + (_size.m_x/2),
                                  _pos.m_y + (_size.m_y/2),
                                  _pos.m_z + (_size.m_z/2) );
 
        m_bodyBox.m_vecMin = Vec4(_pos.m_x - (_size.m_x/2),
                                  _pos.m_y - (_size.m_y/2),
-                                 _pos.m_z - (_size.m_z/2) );}
+                                 _pos.m_z - (_size.m_z/2) )*/;}
 
 //  virtual ~Bullet();
 

@@ -2,10 +2,13 @@
 #define UTIL_H
 #include "Vec4.h"
 
-namespace utils {
+/*namespace*/
+class util
+{
+public:
 
-float floatRand(float a);
-float floatRandRange(float a, float b);
-}
+  static float floatRand(float a);
+  static float floatRandRange(float _min, float _max);
+};
 
 #endif // UTIL_H

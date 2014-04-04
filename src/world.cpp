@@ -39,13 +39,13 @@ void World::update()
     for (bit = m_bodies.begin(); bit != m_bodies.end(); ++bit) {
 
       if ((it != bit) && ((*it)->checkCollision(*bit))) {
-        std::cout<< "COLLISION";
+        std::cout<< "COLLISION\n";
         if ((((*it)->getType() == RigidBodies::BT_ASTEROID) &&
              ((*bit)->getType() == RigidBodies::BT_BULLET)) ||
             (((*it)->getType() == RigidBodies::BT_BULLET) &&
              ((*bit)->getType() == RigidBodies::BT_ASTEROID))) {
 
-          std::cout<< "bullet & asteroid collide";
+          std::cout<< "bullet & asteroid collide\n";
         }
 
         else if ((((*it)->getType() == RigidBodies::BT_ASTEROID) &&
@@ -53,7 +53,7 @@ void World::update()
                  (((*it)->getType() == RigidBodies::BT_ROCKET) &&
                   ((*bit)->getType() == RigidBodies::BT_ASTEROID))) {
 
-          std::cout<<"asteroid & rocket collide";
+          std::cout<<"asteroid & rocket collide\n";
         }
 
 
@@ -83,7 +83,7 @@ void World::draw()
   }
 
   glPushMatrix();
-    GLFunctions::sphere(m_worldSize,30);
+   // GLFunctions::sphere(m_worldSize,30);
   glPopMatrix();
 }
 
@@ -95,26 +95,30 @@ void World::movePlayer(float _move, float _rotation)
 ///-----------------------------------------------------------------------------------
 void World::spawnAsteroid()
 {
-  Vec4 position = Vec4(utils::floatRand(m_worldSize)*sin(utils::floatRand(360)*PI/180),
+  Vec4 position = Vec4(util::floatRandRange(-m_worldSize, m_worldSize)*sin(util::floatRand((360)*PI)/180),
                        0,
-                       utils::floatRand(-m_worldSize)*sin(utils::floatRand(360)*PI/180) );
+                       util::floatRandRange(-m_worldSize, m_worldSize)*sin(util::floatRand((360)*PI)/180) );
+  std::cout<<"The position is \n ";
+  position.print();
+  std::cout<<"\n";
   Vec4 colour = Vec4(0.36f, 0.25f, 0.2f);
-  Vec4 scale = Vec4(1.0f, 1.0f, 1.0f);
-  float radius = utils::floatRand(m_worldSize/50);
-  Vec4 dest = Vec4(utils::floatRandRange(-m_worldSize, m_worldSize),
+  Vec4 scale = Vec4(5.0f, 5.0f, 5.0f);
+  float radius = util::floatRand(m_worldSize/50);
+  Vec4 direction = Vec4(util::floatRandRange(-0.1, 0.1),
                    0,
-                   utils::floatRandRange(-m_worldSize, m_worldSize));
+                   util::floatRandRange(-0.1, 0.1));
 
   //Asteroid tmp(position, colour, scale, radius, dest );
 
-  m_bodies.push_back(new Asteroid(position, colour, scale, radius, dest ));
+  m_bodies.push_back(new Asteroid(position, colour, scale, radius, direction ));
 }
 ///-----------------------------------------------------------------------------------
 void World::initAsteroid()
 {
-  for(int i=0;i<2;i++)
+  for(int i=0;i<1;i++)
   {
     spawnAsteroid();
+
   }
 }
 ///-----------------------------------------------------------------------------------
